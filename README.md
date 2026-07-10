@@ -1,8 +1,8 @@
 # Gira System 3000 Bluetooth to MQTT / Home Assistant Bridge 🚀
 
-Dieses Repository enthält Skripte und Konfigurationen, um den **Gira System 3000 Bluetooth Bewegungsmelder (2,20 m Komfort BT, System 55)** per Reverse Engineering in Home Assistant einzubinden.
+Dieses Repository enthält Skripte und Konfigurationen, um den **Gira System 3000 Bluetooth Bewegungsmelder (2,20 m Komfort BT, System 55)** per Protokoll-Analyse in Home Assistant einzubinden.
 
-## 📖 Protokoll-Analyse (Reverse Engineering)
+## 📖 Protokoll- und Signal-Analyse
 Da Gira das Bluetooth-Protokoll des System 3000 nicht offenlegt, basiert diese Lösung auf der passiven Analyse (Sniffing) der Bluetooth Low Energy (BLE) Advertisements, die das Modul aussendet.
 
 *   **Hersteller-ID:** `1412` (Gira Giersiepen GmbH & Co. KG / `0x0584` in hex)
