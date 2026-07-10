@@ -28,7 +28,7 @@ esp32_ble_tracker:
         - lambda: |-
             for (auto &data : x.get_manufacturer_datas()) {
               // 0x0584 ist die Gira-Hersteller-ID (1412)
-              if (data.uuid.get_uuid16() == 0x0584) {
+              if (data.uuid == esphome::esp32_ble::ESPBTUUID::from_uint16(0x0584)) {
                 if (data.data.size() >= 4) {
                   size_t len = data.data.size();
                   // Überprüfe das Aktivitätssignal (f8 10 01)
