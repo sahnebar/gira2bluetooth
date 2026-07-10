@@ -1,0 +1,51 @@
+esphome:
+  name: gira-ble-bridge
+  friendly_name: Gira BLE Bridge
+
+esp32:
+  board: esp32dev # Passe dies an dein Board an (z.B. esp32-c3-devkitm-1 oder esp32-s3-devkitc-1)
+  framework:
+    type: arduino
+
+wifi:
+  ssid: "DEIN_WLAN_NAME"
+  password: "DEIN_WLAN_PASSWORT"
+
+# Native Home Assistant API (erlaubt automatische Erkennung in HA)
+api:
+
+ota:
+  - platform: esphome
+
+logger:
+  level: INFO
+
+# Bluetooth Scanner auf dem ESP32 aktivieren
+esp32_ble_tracker:
+  on_ble_advertise:
+    - mac_address: xx:xx:xx:xx:xx:xx # Deine Gira Bewegungsmelder MAC in Kleinbuchstaben!
+      then:
+        - lambda: |-
+            for (auto &data : x.get_manufacturer_datas()) {
+              // 0x0584 ist die Gira-Hersteller-ID (1412)
+              if (data.uuid.get_uuid16() == 0x0584) {
+                if (data.data.size() >= 4) {
+                  size_t len = data.data.size();
+                  // Überprüfe das Aktivitätssignal (f8 10 01)
+                  if (data.data[len-4] == 0xF8 && data.data[len-3] == 0x10 && data.data[len-2] == 0x01) {
+                    if (data.data[len-1] == 0x01) {
+                      id(gira_motion).publish_state(true);  // Bewegung AN
+                    } else if (data.data[len-1] == 0x00) {
+                      id(gira_motion).publish_state(false); // Bewegung AUS
+                    }
+                  }
+                }
+              }
+            }
+
+# Binärer Sensor für Home Assistant
+binary_sensor:
+  - platform: template
+    name: "Gira Bewegungsmelder"
+    id: gira_motion
+    device_class: motion

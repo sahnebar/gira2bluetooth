@@ -1,0 +1,15 @@
+[Unit]
+Description=Gira BLE to MQTT Bridge
+After=network.target bluetooth.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/your_username/gira_ble_bridge
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/your_username/gira_ble_bridge/venv/bin/python -u /home/your_username/gira_ble_bridge/gira_mqtt_bridge.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

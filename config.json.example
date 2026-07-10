@@ -1,0 +1,7 @@
+{
+  "target_mac": "XX:XX:XX:XX:XX:XX",
+  "mqtt_host": "192.168.1.XXX",
+  "mqtt_port": 1883,
+  "mqtt_user": "your_username",
+  "mqtt_password": "your_password"
+}
