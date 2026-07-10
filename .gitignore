@@ -1,0 +1,5 @@
+config.json
+venv/
+.esphome/
+*.pyc
+__pycache__/

@@ -67,5 +67,7 @@ Wenn der Raspberry Pi 4 zu groß oder zu stromhungrig für diese einfache Aufgab
 
 ---
 
-## 🔒 Datenschutzhinweis
-Dieses Repository enthält **keinerlei persönliche Zugangsdaten**. Alle Passwörter, IP-Adressen und MAC-Adressen wurden durch Platzhalter ersetzt. Bitte stelle sicher, dass du deine `config.json` nicht wieder zurück ins Git pushst.
+## 🔒 Sicherheitshinweis & gitignore
+In diesem Repository sind **keine echten Passwörter, IP-Adressen oder MAC-Adressen** hinterlegt. 
+
+Damit dir das auch nicht versehentlich passiert, ist die `config.json` bereits in der `.gitignore` eingetragen. Achte bei der ESPHome-Konfiguration darauf, deine echten WLAN-Daten vor einem Push zu entfernen.
