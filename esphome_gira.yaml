@@ -52,3 +52,19 @@ binary_sensor:
     name: "Gira Bewegungsmelder"
     id: gira_motion
     device_class: motion
+
+# Interne Chip-Temperatur zur Überhitzungsüberwachung
+sensor:
+  - platform: internal_temperature
+    name: "Gira Bridge Chip-Temperatur"
+    id: chip_temp
+    update_interval: 60s  # Jede Minute aktualisieren
+    unit_of_measurement: "°C"
+    accuracy_decimals: 1
+    on_value_range:
+      - above: 80.0
+        then:
+          - logger.log:
+              level: WARN
+              format: "WARNUNG: Chip-Temperatur zu hoch: %.1f°C!"
+              args: [x]
