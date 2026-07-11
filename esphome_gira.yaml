@@ -6,6 +6,9 @@ esp32:
   board: esp32dev # Passe dies an dein Board an (z.B. esp32-c3-devkitm-1 oder esp32-s3-devkitc-1)
   framework:
     type: arduino
+    advanced:
+      minimum_chip_revision: "3.1"  # Optimiert Binärgröße für ESP32 Rev 3.0+
+      sram1_as_iram: true           # Aktiviert zusätzliche +40KB IRAM (bessere BLE-Performance)
 
 wifi:
   ssid: "DEIN_WLAN_NAME"
